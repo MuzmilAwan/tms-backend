@@ -24,7 +24,6 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(mongoSanitize());
 app.use(xss());
-// if (process.env.NODE_ENV !== 'test') app.use(morgan('dev'));
 
 
 const allowedOrigins = process.env.ALLOWED_ORIGINS
