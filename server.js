@@ -25,7 +25,6 @@ app.use(cookieParser());
 app.use(mongoSanitize());
 app.use(xss());
 // if (process.env.NODE_ENV !== 'test') app.use(morgan('dev'));
-// app.use(cors({ origin: ["https://tms-frontend-plum.vercel.app"], credentials: true }));
 
 
 const allowedOrigins = process.env.ALLOWED_ORIGINS
