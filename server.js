@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(mongoSanitize());
 app.use(xss());
-app.use(cors({ origin: ["https://tms-frontend-ebon.vercel.app"], credentials: true }));
+app.use(cors({ origin: ["https://tms-frontend-plum.vercel.app"], credentials: true }));
 if (process.env.NODE_ENV !== 'test') app.use(morgan('dev'));
 
 
