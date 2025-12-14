@@ -39,6 +39,8 @@ app.use(limiter);
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
 app.get('/', (req, res) => res.json({ message: 'MERN Task Manager API' }));
+app.get("/favicon.ico", (req, res) => res.status(204).end());
+
 
 // Error handler
 app.use(protect);
