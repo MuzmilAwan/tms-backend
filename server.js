@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(mongoSanitize());
 app.use(xss());
-app.use(cors({ origin: true, credentials: true }));
+app.use(cors({ origin: ["https://tms-frontend-ebon.vercel.app"], credentials: true }));
 if (process.env.NODE_ENV !== 'test') app.use(morgan('dev'));
 
 
@@ -49,8 +49,8 @@ if (process.env.NODE_ENV !== 'test') {
     mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
         .then(() => {
             console.log('MongoDB connected');
-            const PORT = process.env.PORT || 5000;
-            app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+            // const PORT = process.env.PORT || 5000;
+            // app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
         })
         .catch(err => {
             console.error('Mongo connection error:', err);
