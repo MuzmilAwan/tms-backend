@@ -24,8 +24,31 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(mongoSanitize());
 app.use(xss());
-app.use(cors({ origin: ["https://tms-frontend-plum.vercel.app"], credentials: true }));
-if (process.env.NODE_ENV !== 'test') app.use(morgan('dev'));
+// if (process.env.NODE_ENV !== 'test') app.use(morgan('dev'));
+// app.use(cors({ origin: ["https://tms-frontend-plum.vercel.app"], credentials: true }));
+
+
+const allowedOrigins = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(",")
+  : [];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    return callback(new Error("CORS blocked: origin not allowed"));
+  },
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
+app.options("*", cors());
+
 
 
 const limiter = rateLimit({
